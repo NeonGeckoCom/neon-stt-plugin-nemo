@@ -36,9 +36,9 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          pip install Cython --install-option="--no-cython-compile"
           sudo apt install gcc ffmpeg portaudio19-dev python3-pyaudio
           python -m pip install --upgrade pip
+          pip install Cython --install-option="--no-cython-compile"
           pip install -r requirements/requirements.txt
           pip install -r requirements/test_requirements.txt
 
