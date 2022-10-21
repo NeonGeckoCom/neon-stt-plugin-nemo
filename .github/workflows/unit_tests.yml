@@ -41,7 +41,7 @@ jobs:
           pip install -r requirements/requirements.txt
           pip install -r requirements/test_requirements.txt
 
-      - name: Test Deepspeech STT
+      - name: Test Nemo STT
         run: |
           pytest tests/test_stt.py --junitxml=tests/stt-test-results.xml
       - name: Upload STT test results

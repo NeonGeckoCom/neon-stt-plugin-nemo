@@ -45,7 +45,6 @@ class TestGetSTT(unittest.TestCase):
             transcription = os.path.splitext(os.path.basename(file))[0].lower()
             audio_path = os.path.join(TEST_PATH, file)
             result = self.stt.execute(audio_path)
-            print(transcription, result)
             self.assertIn(transcription, result)
 
 

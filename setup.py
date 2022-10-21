@@ -39,8 +39,7 @@ def get_requirements(requirements_filename: str):
     return requirements
 
 
-PLUGIN_ENTRY_POINT = 'stt_module_name = neon_stt_plugin_TODO_NAME:TemplateStreamingSTT'  # TODO: Update name and path
-
+PLUGIN_ENTRY_POINT = 'stt_module_name = neon_stt_plugin_nemo:NemoSTT'
 with open("README.md", "r") as f:
     long_description = f.read()
 
@@ -53,14 +52,14 @@ with open("./version.py", "r", encoding="utf-8") as v:
                 version = line.split("'")[1]
 
 setup(
-    name='neon-stt-plugin-stt_module_name',  # TODO Update `stt_module_name`
+    name='neon-stt-plugin-nemo',
     version=version,
-    description='An STT plugin for Neon',  # TODO: Add engine/framework name
+    description='Nemo STT plugin for Neon',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/NeonGeckoCom/template-neon-stt-plugin',  # TODO: Update link
+    url='https://github.com/NeonGeckoCom/neon-stt-plugin-nemo',
     author='Neongecko',
-    author_email='developers@neon.ai',
+    author_email='mariia@neon.ai',
     license='BSD-3.0',
     packages=find_packages(),
     install_requires=get_requirements("requirements.txt"),
