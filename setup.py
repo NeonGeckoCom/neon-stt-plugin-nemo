@@ -62,13 +62,13 @@ setup(
     author_email='mariia@neon.ai',
     license='BSD-3.0',
     packages=find_packages(),
-    package_data={"neon_stt_plugin_nemo": ["*.yml"]},
+    package_data ={"neon_stt_plugin_nemo": ["*.yml"]},
     install_requires=get_requirements("requirements.txt"),
     zip_safe=True,
     classifiers=[
         'Intended Audience :: Developers',
         'Topic :: Text Processing :: Linguistic',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.8',
     ],
     keywords='mycroft plugin stt',
     entry_points={'mycroft.plugin.stt': PLUGIN_ENTRY_POINT}
