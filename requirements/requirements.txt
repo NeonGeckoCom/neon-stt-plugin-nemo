@@ -1,5 +1,4 @@
 neon-utils~=0.5,>=0.5.7
-Cython
 ovos-plugin-manager~=0.0.1
 streaming-stt-nemo
 SpeechRecognition

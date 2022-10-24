@@ -27,12 +27,12 @@
 # SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-import speech_recognition as sr
 import numpy as np
 
 from streaming_stt_nemo import Model
 from ovos_plugin_manager.templates.stt import STT
 from neon_utils.logger import LOG
+from speech_recognition import AudioData
 
 
 class NemoSTT(STT):
@@ -43,7 +43,7 @@ class NemoSTT(STT):
         self.transcriptions = []
         self.model = Model()
 
-    def execute(self, audio, language=None):
+    def execute(self, audio: AudioData, language=None):
         '''
         Executes speach recognition
 
@@ -52,9 +52,6 @@ class NemoSTT(STT):
         Returns:
                     text (str): recognized text
         '''
-        r = sr.Recognizer()
-        with sr.AudioFile(audio) as source:
-            audio = r.record(source)  # read the entire audio file
 
         audio_buffer = np.frombuffer(audio.get_raw_data(), dtype=np.int16)
         self.transcriptions = self.model.stt(audio_buffer, audio.sample_rate)

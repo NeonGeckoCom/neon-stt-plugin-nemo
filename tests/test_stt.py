@@ -29,6 +29,7 @@
 import os
 import sys
 import unittest
+from speech_recognition import AudioFile
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from neon_stt_plugin_nemo import NemoSTT
@@ -39,15 +40,19 @@ TEST_PATH = os.path.join(ROOT_DIR, "test_audio")
 
 class TestGetSTT(unittest.TestCase):
     def setUp(self) -> None:
-        self.stt = NemoSTT('en')
+        self.stt = NemoSTT({'lang':'en'})
 
     def test_get_stt(self):
+        
+        r = sr.Recognizer()
 
         for file in os.listdir(TEST_PATH):
             transcription = os.path.splitext(os.path.basename(file))[0].lower()
             audio_path = os.path.join(TEST_PATH, file)
-            result = self.stt.execute(audio_path)
-            self.assertIn(transcription, result)
+            with AudioFile(audio_path) as source:
+                audio = r.record(source)  # read the entire audio file
+                result = self.stt.execute(audio)
+                self.assertIn(transcription, result)
 
 
 if __name__ == '__main__':
