@@ -1,2 +1,4 @@
+neon_stt_plugin_nemo
+neon-speech
 pytest
 pytest-timeout

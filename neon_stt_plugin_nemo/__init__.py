@@ -31,25 +31,17 @@ import speech_recognition as sr
 import numpy as np
 
 from streaming_stt_nemo import Model
-
-try:
-    from neon_speech.stt import STT
-except ImportError:
-    from ovos_plugin_manager.templates.stt import STT
+from ovos_plugin_manager.templates.stt import STT
 from neon_utils.logger import LOG
 
 
 class NemoSTT(STT):
     def __init__(self, config: dict = None):
-        if isinstance(config, str):
-            LOG.warning(f"Expected dict config but got: {config}")
-            config = {"lang": config}
-        config = config or dict()
         super().__init__(config)
 
         self.lang = config.get('lang') or 'en'
         self.transcriptions = []
-        self.text = None
+        self.model = Model()
 
     def execute(self, audio, language=None):
         '''
@@ -64,15 +56,13 @@ class NemoSTT(STT):
         with sr.AudioFile(audio) as source:
             audio = r.record(source)  # read the entire audio file
 
-        model = Model()
         audio_buffer = np.frombuffer(audio.get_raw_data(), dtype=np.int16)
-        self.transcriptions = model.stt(audio_buffer, audio.sample_rate)
+        self.transcriptions = self.model.stt(audio_buffer, audio.sample_rate)
 
         if not self.transcriptions:
             LOG.info("Transcription is empty")
             self.transcriptions = []
         else:
             LOG.debug("Audio had data")
-            self.text = self.transcriptions
 
         return self.transcriptions
