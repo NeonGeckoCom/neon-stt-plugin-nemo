@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install gcc ffmpeg portaudio19-dev python3-pyaudio
+          sudo apt install gcc ffmpeg portaudio19-dev python3-pyaudio libpulse-dev
           python -m pip install --upgrade pip
           pip install Cython --install-option="--no-cython-compile"
           pip install -r requirements/requirements.txt
