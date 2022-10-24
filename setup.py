@@ -39,6 +39,7 @@ def get_requirements(requirements_filename: str):
     return requirements
 
 
+
 PLUGIN_ENTRY_POINT = 'stt_module_name = neon_stt_plugin_nemo:NemoSTT'
 with open("README.md", "r") as f:
     long_description = f.read()
