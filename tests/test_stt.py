@@ -29,8 +29,10 @@
 import os
 import sys
 import unittest
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from neon_stt_plugin_nemo import NemoSTT
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+
 ROOT_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_PATH = os.path.join(ROOT_DIR, "test_audio")
 
