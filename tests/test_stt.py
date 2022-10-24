@@ -43,8 +43,6 @@ class TestGetSTT(unittest.TestCase):
         self.stt = NemoSTT({'lang':'en'})
 
     def test_get_stt(self):
-        
-        r = sr.Recognizer()
 
         for file in os.listdir(TEST_PATH):
             transcription = os.path.splitext(os.path.basename(file))[0].lower()
