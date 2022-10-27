@@ -40,7 +40,7 @@ def get_requirements(requirements_filename: str):
 
 
 
-PLUGIN_ENTRY_POINT = 'stt_module_name = neon_stt_plugin_nemo:NemoSTT'
+PLUGIN_ENTRY_POINT = 'neon-stt-plugin-nemo = neon_stt_plugin_nemo:NemoSTT'
 with open("README.md", "r") as f:
     long_description = f.read()
 
@@ -60,7 +60,7 @@ setup(
     long_description_content_type="text/markdown",
     url='https://github.com/NeonGeckoCom/neon-stt-plugin-nemo',
     author='Neongecko',
-    author_email='mariia@neon.ai',
+    author_email='developers@neon.ai',
     license='BSD-3.0',
     packages=find_packages(),
     package_data ={"neon_stt_plugin_nemo": ["*.yml"]},
