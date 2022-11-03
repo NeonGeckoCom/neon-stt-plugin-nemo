@@ -26,12 +26,11 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
 import numpy as np
 
 from streaming_stt_nemo import Model
 from ovos_plugin_manager.templates.stt import STT
-from neon_utils.logger import LOG
+from ovos_utils.log import LOG
 from speech_recognition import AudioData
 
 
