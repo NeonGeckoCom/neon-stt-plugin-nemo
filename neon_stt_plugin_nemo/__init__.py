@@ -38,7 +38,7 @@ class NemoSTT(STT):
     def __init__(self, config: dict = None):
         super().__init__(config)
 
-        self.lang = config.get('lang') or 'en'
+        self.lang = self.config.get('lang') or 'en'
         self.transcriptions = []
         self.model = Model()
 
