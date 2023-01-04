@@ -35,14 +35,32 @@ from speech_recognition import AudioData
 
 
 class NemoSTT(STT):
+    default_lang = "en"
+
     def __init__(self, config: dict = None):
         super().__init__(config)
 
-        self.lang = self.config.get('lang') or 'en'
+        self.lang = self.config.get('lang') or self.default_lang
         self.transcriptions = []
-        self.model = Model()
 
-    def execute(self, audio: AudioData, language=None):
+        self._engines = {}
+        self.cache_engines = self.config.get("cache", True)
+        if self.cache_engines:
+            self._init_model(self.lang)
+
+    def _init_model(self, language) -> Model:
+        language = language or self.lang
+        if language not in self._engines:
+            model = Model(language)
+            if self.cache_engines:
+                self._engines[language] = model
+        else:
+            model = self._engines[language]
+
+        return model
+
+
+    def execute(self, audio: AudioData, language = None):
         '''
         Executes speach recognition
 
@@ -51,9 +69,10 @@ class NemoSTT(STT):
         Returns:
                     text (str): recognized text
         '''
+        model = self._init_model(language)
 
         audio_buffer = np.frombuffer(audio.get_raw_data(), dtype=np.int16)
-        self.transcriptions = self.model.stt(audio_buffer, audio.sample_rate)
+        self.transcriptions = model.stt(audio_buffer, audio.sample_rate)
 
         if not self.transcriptions:
             LOG.info("Transcription is empty")
