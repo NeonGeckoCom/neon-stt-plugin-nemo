@@ -1,3 +1,2 @@
-neon-speech
 pytest
 pytest-timeout

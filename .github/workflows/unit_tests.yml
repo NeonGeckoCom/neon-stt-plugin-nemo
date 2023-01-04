@@ -25,7 +25,7 @@ jobs:
   unit_tests:
     strategy:
       matrix:
-        python-version: [ 3.6, 3.7, 3.8, 3.9 ]
+        python-version: [ 3.7, 3.8, 3.9 ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -36,17 +36,18 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install ffmpeg portaudio19-dev python3-pyaudio
+          sudo apt install gcc ffmpeg portaudio19-dev python3-pyaudio libpulse-dev
+          pip install Cython --install-option="--no-cython-compile"
           python -m pip install --upgrade pip
           pip install -r requirements/requirements.txt
           pip install -r requirements/test_requirements.txt
 
-      - name: Test Deepspeech STT
+      - name: Test Nemo STT
         run: |
           pytest tests/test_stt.py --junitxml=tests/stt-test-results.xml
       - name: Upload STT test results
         uses: actions/upload-artifact@v2
         with:
-          name: pytest-results-3.6
+          name: pytest-results-3.7
           path: tests/stt-test-results.xml
         if: ${{ always() }}
