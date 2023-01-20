@@ -1,5 +1,5 @@
 numpy
-ovos-plugin-manager>=0.0.19
+ovos-plugin-manager
 ovos-utils>=0.0.25
 streaming-stt-nemo>=0.0.4a1
 SpeechRecognition
