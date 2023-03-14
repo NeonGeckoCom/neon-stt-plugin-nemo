@@ -26,60 +26,59 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from inspect import signature
-from queue import Queue
+import numpy as np
 
-try:
-    from neon_speech.stt import StreamingSTT, StreamThread
-except ImportError:
-    from ovos_plugin_manager.templates.stt import StreamingSTT, StreamThread
-from neon_utils.logger import LOG
+from streaming_stt_nemo import Model
+from ovos_plugin_manager.templates.stt import STT
+from ovos_utils.log import LOG
+from speech_recognition import AudioData
 
 
-class TemplateStreamingSTT(StreamingSTT):  # TODO: Replace 'Template' with STT name
-    def __init__(self, results_event, config=None):
-        if len(signature(super(TemplateStreamingSTT, self).__init__).parameters) == 0:
-            LOG.warning(f"Deprecated Signature Found; config will be ignored and results_event will not be handled!")
-            super(TemplateStreamingSTT, self).__init__()
+class NemoSTT(STT):
+    default_lang = "en"
+
+    def __init__(self, config: dict = None):
+        super().__init__(config)
+
+        self.lang = self.config.get('lang') or self.default_lang
+        self.transcriptions = []
+
+        self._engines = {}
+        self.cache_engines = self.config.get("cache", True)
+        if self.cache_engines:
+            self._init_model(self.lang)
+
+    def _init_model(self, language) -> Model:
+        # OVOS uses 'en-us' so this hacks that to work until dialects are supported
+        language = (language or self.lang).split('-')[0]
+        if language not in self._engines:
+            model = Model(language)
+            if self.cache_engines:
+                self._engines[language] = model
         else:
-            super(TemplateStreamingSTT, self).__init__(results_event=results_event, config=config)
+            model = self._engines[language]
 
-        if not hasattr(self, "results_event"):
-            self.results_event = None
-        # override language with module specific language selection
-        self.language = self.config.get('lang') or self.lang
-        self.queue = None
-        self.client = None  # TODO: Initialize STT engine here DM
-
-    def create_streaming_thread(self):
-        self.queue = Queue()
-        return TemplateStreamThread(
-            self.queue,
-            self.language,
-            self.client,
-            self.results_event
-        )
+        return model
 
 
-class TemplateStreamThread(StreamThread):  # TODO: Replace 'Template' with STT name
-    def __init__(self, queue, lang, client, results_event):
-        super().__init__(queue, lang)
-        self.client = client
-        self.results_event = results_event
-        self.transcriptions = []
+    def execute(self, audio: AudioData, language = None):
+        '''
+        Executes speach recognition
 
-    def handle_audio_stream(self, audio, language):
-        # TODO: Handle audio stream and populate `self.transcriptions` until there is no more speech in input
-        self.transcriptions = []
+        Parameters:
+                    audio : input audio file path
+        Returns:
+                    text (str): recognized text
+        '''
+        model = self._init_model(language)
+
+        audio_buffer = np.frombuffer(audio.get_raw_data(), dtype=np.int16)
+        self.transcriptions = model.stt(audio_buffer, audio.sample_rate)
 
         if not self.transcriptions:
             LOG.info("Transcription is empty")
-            self.text = None
             self.transcriptions = []
         else:
             LOG.debug("Audio had data")
-            self.text = self.transcriptions[0]
 
-        if self.results_event:
-            self.results_event.set()
         return self.transcriptions
