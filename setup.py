@@ -70,6 +70,7 @@ setup(
     packages=find_packages(),
     package_data={"neon_stt_plugin_nemo": ["*.yml"]},
     install_requires=get_requirements("requirements.txt"),
+    extras_require={"docker": get_requirements("docker.txt")},
     zip_safe=True,
     classifiers=[
         'Intended Audience :: Developers',
