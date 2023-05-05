@@ -23,7 +23,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install gcc ffmpeg portaudio19-dev python3-pyaudio libpulse-dev
-          pip install Cython --install-option="--no-cython-compile"
+          pip install wheel
+          pip install Cython
           python -m pip install --upgrade pip
           pip install -r requirements/requirements.txt
           pip install -r requirements/test_requirements.txt
