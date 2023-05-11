@@ -83,5 +83,6 @@ class NemoSTT(STT):
             self.transcriptions = []
         else:
             LOG.debug("Audio had data")
-
-        return self.transcriptions
+        # TODO: Return a string since we currently only get one result and the
+        #   ovos-stt-server only handles strings here
+        return self.transcriptions[0]
