@@ -28,7 +28,7 @@
 
 import numpy as np
 
-from streaming_stt_nemo import Model, languages
+from streaming_stt_nemo import Model, available_languages
 from ovos_plugin_manager.templates.stt import STT
 from ovos_utils.log import LOG
 from speech_recognition import AudioData
@@ -62,7 +62,7 @@ class NemoSTT(STT):
 
     @property
     def available_languages(self) -> set:
-        return set(languages.keys())
+        return set(available_languages)
 
     def execute(self, audio: AudioData, language = None):
         '''
