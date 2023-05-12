@@ -1,6 +1,6 @@
 ovos-plugin-manager~=0.0.21
 ovos-utils~=0.0.30
-streaming-stt-nemo @ git+https://github.com/neongeckocom/streaming-stt-nemo@onnx
+streaming-stt-nemo~=0.1,>=0.1.2a0
 SpeechRecognition~=3.8
 
 # TODO: Patching OPM
