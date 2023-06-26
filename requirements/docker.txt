@@ -1,1 +1,1 @@
-ovos-stt-http-server>=0.0.2a5
+ovos-stt-http-server~=0.0.2
