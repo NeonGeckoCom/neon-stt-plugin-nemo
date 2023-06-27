@@ -28,7 +28,7 @@
 
 import numpy as np
 
-from streaming_stt_nemo import Model
+from streaming_stt_nemo import Model, available_languages
 from ovos_plugin_manager.templates.stt import STT
 from ovos_utils.log import LOG
 from speech_recognition import AudioData
@@ -60,6 +60,9 @@ class NemoSTT(STT):
 
         return model
 
+    @property
+    def available_languages(self) -> set:
+        return set(available_languages)
 
     def execute(self, audio: AudioData, language = None):
         '''
@@ -80,5 +83,6 @@ class NemoSTT(STT):
             self.transcriptions = []
         else:
             LOG.debug("Audio had data")
-
-        return self.transcriptions
+        # TODO: Return a string since we currently only get one result and the
+        #   ovos-stt-server only handles strings here
+        return self.transcriptions[0]
