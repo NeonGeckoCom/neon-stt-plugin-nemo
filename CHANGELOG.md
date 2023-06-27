@@ -1,11 +1,12 @@
 # Changelog
 
-## [0.0.3](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.3) (2023-06-06)
+## [0.0.4](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.4) (2023-06-27)
 
-[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.2...0.0.3)
+[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.2...0.0.4)
 
 **Merged pull requests:**
 
+- Update Docker and docs [\#18](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/18) ([NeonDaniel](https://github.com/NeonDaniel))
 - Using ONNX Nemo STT [\#15](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/15) ([NeonBohdan](https://github.com/NeonBohdan))
 - Docker container and Updated GitHub Automation [\#13](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/13) ([NeonDaniel](https://github.com/NeonDaniel))
 - Add `available_languages` property [\#11](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/11) ([NeonDaniel](https://github.com/NeonDaniel))
