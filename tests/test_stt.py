@@ -52,6 +52,12 @@ class TestGetSTT(unittest.TestCase):
                 result = self.stt.execute(audio)
                 self.assertIn(transcription, result)
 
+    def test_available_languages(self):
+        langs = self.stt.available_languages
+        self.assertIsInstance(langs, set)
+        self.assertTrue(all((isinstance(lang, str) for lang in langs)))
+        self.assertIn("en", langs)
+
 
 if __name__ == '__main__':
     unittest.main()
