@@ -45,18 +45,22 @@ class NemoSTT(STT):
 
         self._engines = {}
         self.cache_engines = self.config.get("cache", True)
+        self.default_model = self.config.get("model", None)
         if self.cache_engines:
-            self._init_model(self.lang)
+            self._init_model()
 
-    def _init_model(self, language) -> Model:
+    def _init_model(self, language=None) -> Model:
         # OVOS uses 'en-us' so this hacks that to work until dialects are supported
-        language = (language or self.lang).split('-')[0]
-        if language not in self._engines:
-            model = Model(language)
+        lang = (language or self.lang).split('-')[0]
+        if lang not in self._engines:
+            if self.default_model and language is None:
+                model = Model(lang=lang, model_folder=self.default_model)
+            else:
+                model = Model(lang=lang)
             if self.cache_engines:
-                self._engines[language] = model
+                self._engines[lang] = model
         else:
-            model = self._engines[language]
+            model = self._engines[lang]
 
         return model
 
