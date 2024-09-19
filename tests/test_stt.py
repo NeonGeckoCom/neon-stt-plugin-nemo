@@ -51,6 +51,11 @@ class TestGetSTT(unittest.TestCase):
                 audio = r.record(source)  # read the entire audio file
                 result = self.stt.execute(audio)
                 self.assertIn(transcription, result)
+                results = self.stt.transcribe(audio)
+                self.assertEqual(results[0][0], result)
+                for result in results:
+                    self.assertIsInstance(result[0], str)
+                    self.assertIsInstance(result[1], float)
 
     def test_available_languages(self):
         langs = self.stt.available_languages
