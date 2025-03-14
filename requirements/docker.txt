@@ -1,1 +1,2 @@
-ovos-stt-http-server~=0.0.2
+ovos-stt-http-server==0.0.2
+# TODO: Gradio broken in 0.0.3+ with fix in https://github.com/OpenVoiceOS/ovos-stt-http-server/pull/28
