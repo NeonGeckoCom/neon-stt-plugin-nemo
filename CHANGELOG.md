@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.5a8](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.5a8) (2025-03-14)
+
+[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.5a7...0.0.5a8)
+
+**Merged pull requests:**
+
+- Pin ovos-stt-http-server dependency to resolve Gradio deployment bug [\#28](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/28) ([NeonDaniel](https://github.com/NeonDaniel))
+
 ## [0.0.5a7](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.5a7) (2025-03-14)
 
 [Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.5a6...0.0.5a7)
