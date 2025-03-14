@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.5a7](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.5a7) (2025-03-14)
+
+[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.5a6...0.0.5a7)
+
+**Merged pull requests:**
+
+- Update dependencies [\#27](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/27) ([NeonDaniel](https://github.com/NeonDaniel))
+
 ## [0.0.5a6](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.5a6) (2025-03-14)
 
 [Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.4...0.0.5a6)
