@@ -1,15 +1,33 @@
 # Changelog
 
-## [0.0.4](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.4) (2023-06-27)
+## [0.0.5a8](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.5a8) (2025-03-14)
 
-[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.2...0.0.4)
+[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.5a7...0.0.5a8)
 
 **Merged pull requests:**
 
-- Update Docker and docs [\#18](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/18) ([NeonDaniel](https://github.com/NeonDaniel))
-- Using ONNX Nemo STT [\#15](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/15) ([NeonBohdan](https://github.com/NeonBohdan))
-- Docker container and Updated GitHub Automation [\#13](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/13) ([NeonDaniel](https://github.com/NeonDaniel))
-- Add `available_languages` property [\#11](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/11) ([NeonDaniel](https://github.com/NeonDaniel))
+- Pin ovos-stt-http-server dependency to resolve Gradio deployment bug [\#28](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/28) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [0.0.5a7](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.5a7) (2025-03-14)
+
+[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.5a6...0.0.5a7)
+
+**Merged pull requests:**
+
+- Update dependencies [\#27](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/27) ([NeonDaniel](https://github.com/NeonDaniel))
+
+## [0.0.5a6](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.5a6) (2025-03-14)
+
+[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.4...0.0.5a6)
+
+**Merged pull requests:**
+
+- Update GitHub Actions and License Notices [\#26](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/26) ([NeonDaniel](https://github.com/NeonDaniel))
+- Add support for multiple transcripts with updated unit tests [\#25](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/25) ([NeonDaniel](https://github.com/NeonDaniel))
+- Update OPM dependency to allow latest stable version [\#24](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/24) ([NeonDaniel](https://github.com/NeonDaniel))
+- feat/accept model from path [\#23](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/23) ([JarbasAl](https://github.com/JarbasAl))
+- Update dependencies to allow ovos-utils 0.1 [\#22](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/22) ([NeonDaniel](https://github.com/NeonDaniel))
+- Add test case to validate available languages [\#21](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/21) ([NeonDaniel](https://github.com/NeonDaniel))
 
 
 

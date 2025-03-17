@@ -1,6 +1,6 @@
 # NEON AI (TM) SOFTWARE, Software Development Kit & Application Framework
 # All trademark and other rights reserved by their respective owners
-# Copyright 2008-2022 Neongecko.com Inc.
+# Copyright 2008-2025 Neongecko.com Inc.
 # Contributors: Daniel McKnight, Guy Daniels, Elon Gasper, Richard Leeds,
 # Regina Bloomstine, Casimiro Ferreira, Andrii Pernatii, Kirill Hrymailo
 # BSD-3 License
@@ -51,6 +51,17 @@ class TestGetSTT(unittest.TestCase):
                 audio = r.record(source)  # read the entire audio file
                 result = self.stt.execute(audio)
                 self.assertIn(transcription, result)
+                results = self.stt.transcribe(audio)
+                self.assertEqual(results[0][0], result)
+                for result in results:
+                    self.assertIsInstance(result[0], str)
+                    self.assertIsInstance(result[1], float)
+
+    def test_available_languages(self):
+        langs = self.stt.available_languages
+        self.assertIsInstance(langs, set)
+        self.assertTrue(all((isinstance(lang, str) for lang in langs)))
+        self.assertIn("en", langs)
 
 
 if __name__ == '__main__':

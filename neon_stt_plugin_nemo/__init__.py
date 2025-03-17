@@ -1,6 +1,6 @@
 # NEON AI (TM) SOFTWARE, Software Development Kit & Application Framework
 # All trademark and other rights reserved by their respective owners
-# Copyright 2008-2022 Neongecko.com Inc.
+# Copyright 2008-2025 Neongecko.com Inc.
 # Contributors: Daniel McKnight, Guy Daniels, Elon Gasper, Richard Leeds,
 # Regina Bloomstine, Casimiro Ferreira, Andrii Pernatii, Kirill Hrymailo
 # BSD-3 License
@@ -25,6 +25,7 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+from typing import Optional, List, Tuple
 
 import numpy as np
 
@@ -45,18 +46,22 @@ class NemoSTT(STT):
 
         self._engines = {}
         self.cache_engines = self.config.get("cache", True)
+        self.default_model = self.config.get("model", None)
         if self.cache_engines:
-            self._init_model(self.lang)
+            self._init_model()
 
-    def _init_model(self, language) -> Model:
+    def _init_model(self, language=None) -> Model:
         # OVOS uses 'en-us' so this hacks that to work until dialects are supported
-        language = (language or self.lang).split('-')[0]
-        if language not in self._engines:
-            model = Model(language)
+        lang = (language or self.lang).split('-')[0]
+        if lang not in self._engines:
+            if self.default_model and language is None:
+                model = Model(lang=lang, model_folder=self.default_model)
+            else:
+                model = Model(lang=lang)
             if self.cache_engines:
-                self._engines[language] = model
+                self._engines[lang] = model
         else:
-            model = self._engines[language]
+            model = self._engines[lang]
 
         return model
 
@@ -64,16 +69,26 @@ class NemoSTT(STT):
     def available_languages(self) -> set:
         return set(available_languages)
 
-    def execute(self, audio: AudioData, language = None):
-        '''
-        Executes speach recognition
+    def execute(self, audio: AudioData, language: Optional[str] = None) -> str:
+        """
+        Executes speech recognition and returns the most likely transcription
+        @param audio: input audio data
+        @param language: language of input audio
+        @return: recognized text
+        """
 
-        Parameters:
-                    audio : input audio file path
-        Returns:
-                    text (str): recognized text
-        '''
-        model = self._init_model(language)
+        return self.transcribe(audio, language)[0][0]
+
+    def transcribe(self, audio,
+                   lang: Optional[str] = None) -> List[Tuple[str, float]]:
+        """
+        Executes speech recognition and returns a list of possible
+        transcriptions with associated confidence levels.
+        @param audio: input audio data
+        @param lang: language of input audio
+        @return: List of (transcript, confidence) elements
+        """
+        model = self._init_model(lang)
 
         audio_buffer = np.frombuffer(audio.get_raw_data(), dtype=np.int16)
         self.transcriptions = model.stt(audio_buffer, audio.sample_rate)
@@ -83,6 +98,5 @@ class NemoSTT(STT):
             self.transcriptions = []
         else:
             LOG.debug("Audio had data")
-        # TODO: Return a string since we currently only get one result and the
-        #   ovos-stt-server only handles strings here
-        return self.transcriptions[0]
+        # Models do not return confidence, so just assume max of 1.0
+        return [(t, 1.0) for t in self.transcriptions]
