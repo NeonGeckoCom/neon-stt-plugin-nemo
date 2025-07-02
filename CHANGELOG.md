@@ -1,33 +1,12 @@
 # Changelog
 
-## [0.0.5a8](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.5a8) (2025-03-14)
+## [0.1.1a1](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.1.1a1) (2025-07-02)
 
-[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.5a7...0.0.5a8)
-
-**Merged pull requests:**
-
-- Pin ovos-stt-http-server dependency to resolve Gradio deployment bug [\#28](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/28) ([NeonDaniel](https://github.com/NeonDaniel))
-
-## [0.0.5a7](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.5a7) (2025-03-14)
-
-[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.5a6...0.0.5a7)
+[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.1.0...0.1.1a1)
 
 **Merged pull requests:**
 
-- Update dependencies [\#27](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/27) ([NeonDaniel](https://github.com/NeonDaniel))
-
-## [0.0.5a6](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/tree/0.0.5a6) (2025-03-14)
-
-[Full Changelog](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/compare/0.0.4...0.0.5a6)
-
-**Merged pull requests:**
-
-- Update GitHub Actions and License Notices [\#26](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/26) ([NeonDaniel](https://github.com/NeonDaniel))
-- Add support for multiple transcripts with updated unit tests [\#25](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/25) ([NeonDaniel](https://github.com/NeonDaniel))
-- Update OPM dependency to allow latest stable version [\#24](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/24) ([NeonDaniel](https://github.com/NeonDaniel))
-- feat/accept model from path [\#23](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/23) ([JarbasAl](https://github.com/JarbasAl))
-- Update dependencies to allow ovos-utils 0.1 [\#22](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/22) ([NeonDaniel](https://github.com/NeonDaniel))
-- Add test case to validate available languages [\#21](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/21) ([NeonDaniel](https://github.com/NeonDaniel))
+- Implement Docker health checks [\#30](https://github.com/NeonGeckoCom/neon-stt-plugin-nemo/pull/30) ([NeonDaniel](https://github.com/NeonDaniel))
 
 
 
